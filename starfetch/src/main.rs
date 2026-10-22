@@ -40,7 +40,7 @@ fn color_map() -> HashMap<&'static str, &'static str> {
 
 fn help(data: &Path) {
     let help_path = data.join("help_message.txt");
-    if let Ok(content) = fs::read_to_string(&help_path) {
+    if let Ok(content) = fs::read_to_string(help_path) {
         print!("{}", content);
     }
     process::exit(0);
@@ -210,8 +210,8 @@ fn main() {
                     error_msg(0, " ", &data);
                 }
                 pathc = data
-                    .join(&DIRECTORIES[0])
-                    .join(format!("{}.json", &args[2]))
+                    .join(DIRECTORIES[0])
+                    .join(format!("{}.json", args[2]))
                     .to_string_lossy()
                     .into_owned();
             }
@@ -221,14 +221,14 @@ fn main() {
                 }
                 if args[2] == "norse" && args.len() >= 4 {
                     pathc = data
-                        .join(&DIRECTORIES[1])
-                        .join(format!("{}.json", &args[3]))
+                        .join(DIRECTORIES[1])
+                        .join(format!("{}.json", args[3]))
                         .to_string_lossy()
                         .into_owned();
                 } else {
                     pathc = data
-                        .join(&DIRECTORIES[0])
-                        .join(format!("{}.json", &args[2]))
+                        .join(DIRECTORIES[0])
+                        .join(format!("{}.json", args[2]))
                         .to_string_lossy()
                         .into_owned();
                 }
@@ -254,7 +254,7 @@ fn main() {
                     if let Some(&c) = cmap.get(args[2].as_str()) {
                         color = c.to_string();
                     }
-                    if args.len() == 4 && args[3].as_bytes().get(1) == Some(&b'l') {
+                    if args.len() == 4 && args[3] == "-l" {
                         print_list(&data, &color);
                         process::exit(0);
                     }
@@ -266,8 +266,8 @@ fn main() {
                         color = c.to_string();
                     }
                     pathc = data
-                        .join(&DIRECTORIES[0])
-                        .join(format!("{}.json", &args[4]))
+                        .join(DIRECTORIES[0])
+                        .join(format!("{}.json", args[4]))
                         .to_string_lossy()
                         .into_owned();
                 }
