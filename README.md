@@ -33,7 +33,24 @@ A command line tool written in C++ that displays constellations.
 
 ## Installation
 
-### Manual (UNIX systems)
+### Rust (recommended)
+
+```bash
+git clone https://github.com/islo-demo-env/starfetch-rs
+cd starfetch-rs/starfetch
+cargo build --release
+# The binary is at target/release/starfetch
+```
+
+By default the binary looks for constellation data relative to the executable under `res/`, then falls back to `/usr/local/share/starfetch/`. Override with the `STARFETCH_DATA` environment variable:
+
+```bash
+STARFETCH_DATA=/path/to/res/ cargo run
+```
+
+For port notes and parity evidence against the original C++ implementation, see [`docs/port/`](docs/port/).
+
+### C++ — Manual (UNIX systems)
 
 ```bash
 git clone https://github.com/Haruno19/starfetch
